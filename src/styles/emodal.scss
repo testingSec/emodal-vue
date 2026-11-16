@@ -1,0 +1,488 @@
+.e-modal {
+  .btn-close-grey-40 {
+    color: var(--e-grey-40, var(--bs-secondary-color, #6c757d));
+  }
+
+  .btn-close-white {
+    color: var(--bs-white, #fff);
+  }
+
+  .btn-close-content {
+    gap: 0.25rem;
+  }
+
+  &__btn-group {
+    display: flex;
+
+    & button:first-child {
+      order: 1;
+      margin: 0 12px 0 0;
+    }
+
+    & button:last-child {
+      order: 2;
+    }
+  }
+
+  &-icon {
+    font-size: 60px;
+    color: var(--bs-primary);
+  }
+
+  &__close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: inherit;
+    color: var(--e-grey-40, var(--bs-secondary-color, #6c757d));
+    border: none;
+
+    &:hover {
+      background-color: var(--e-primary-light, var(--bs-tertiary-bg, #f8f9fa));
+    }
+
+    &:active {
+      background-color: var(--e-primary-light-20, var(--bs-secondary-bg, #e2e3e5));
+      border: none;
+    }
+
+    &:focus {
+      outline: solid 2px var(--e-primary-dark-15, var(--bs-primary, #0d6efd));
+    }
+  }
+
+  &__maximize,
+  &__minimize {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: inherit;
+    color: var(--e-grey-40, var(--bs-secondary-color, #6c757d));
+    border: none;
+
+    &:hover {
+      background-color: var(--e-primary-light, var(--bs-tertiary-bg, #f8f9fa));
+    }
+
+    &:active {
+      background-color: var(--e-primary-light-20, var(--bs-secondary-bg, #e2e3e5));
+      border: none;
+    }
+
+    &:focus {
+      outline: solid 2px var(--e-primary-dark-15, var(--bs-primary, #0d6efd));
+    }
+  }
+
+  &__maximize {
+    &--with-close {
+      right: 64px;
+    }
+  }
+
+  &__minimize {
+    &--with-close,
+    &--with-maximize {
+      right: 64px;
+    }
+
+    &.e-modal__minimize--with-close.e-modal__minimize--with-maximize {
+      right: 112px;
+    }
+  }
+
+  &-media {
+    max-height: 500px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+    img,
+    video {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+    }
+  }
+
+  /*
+   * Multimedia close button.
+   * Scoped specificity replaces the previous !important declarations.
+   */
+  .e-modal-media__close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border-radius: 50%;
+    padding: 8px;
+    filter: brightness(95%) opacity(0.75);
+    background-color: white;
+    color: var(--e-grey-40, var(--bs-secondary-color, #6c757d));
+    border: 0;
+
+    &:hover {
+      color: var(--bs-primary);
+    }
+
+    &:active {
+      color: var(--e-primary-dark, var(--bs-primary, #0d6efd));
+      border: none;
+    }
+
+    &:focus {
+      color: var(--e-primary-dark-15, var(--bs-primary, #0d6efd));
+      outline: solid 2px var(--e-primary-dark-15, var(--bs-primary, #0d6efd));
+    }
+  }
+
+  .e-paginator {
+    align-self: center;
+    justify-content: center;
+    display: flex;
+
+    .e-icon {
+      font-size: 24px;
+    }
+
+    .rowInfo {
+      margin: 24px 0;
+    }
+  }
+
+  .modal-content {
+    border-radius: 0.5rem;
+    padding: 0;
+  }
+
+  .modal-md,
+  .modal-sm {
+    .e-modal__close,
+    .e-modal-media__close {
+      top: 12px;
+      right: 12px;
+    }
+
+    .e-modal__maximize,
+    .e-modal__minimize {
+      top: 12px;
+      right: 12px;
+    }
+
+    .e-modal__maximize {
+      &--with-close {
+        right: 60px;
+      }
+    }
+
+    .e-modal__minimize {
+      &--with-close,
+      &--with-maximize {
+        right: 60px;
+      }
+
+      &.e-modal__minimize--with-close.e-modal__minimize--with-maximize {
+        right: 108px;
+      }
+    }
+  }
+
+  /*
+   * Preserve the original modal body behavior.
+   * Independent from Bootstrap's modal-dialog-scrollable.
+   */
+  .modal-body {
+    margin: 24px 16px;
+    overflow-y: auto;
+  }
+
+  .modal-footer {
+    padding: 16px;
+  }
+
+  &--multimedia {
+    .modal-body {
+      margin: 0 16px;
+    }
+  }
+
+  /* Movable modal */
+  &--movable {
+    .modal-header {
+      cursor: grab;
+      touch-action: none;
+    }
+  }
+
+  /* Modal currently being dragged */
+  &--dragging {
+    .modal-header {
+      cursor: grabbing;
+      user-select: none;
+    }
+  }
+
+  /*
+   * Native modal resizing.
+   * Bootstrap disables pointer events on .modal-dialog by default.
+   */
+  .modal-dialog.e-modal--resizable {
+    min-height: 0;
+    max-width: calc(100vw - 2 * var(--bs-modal-margin, 0.5rem));
+    resize: both;
+    overflow: auto;
+    pointer-events: auto;
+
+    > .modal-content {
+      height: 100%;
+      min-height: 0;
+    }
+  }
+
+  /*
+   * Movable modal without backdrop.
+   */
+  &--no-backdrop-movable {
+    pointer-events: none;
+
+    > .modal-dialog {
+      pointer-events: auto;
+    }
+    .modal-content {
+      border: var(--e-modal-framed-border, 1px solid #d5d9de);
+      box-shadow: var(
+        --e-modal-framed-shadow,
+        0 8px 24px rgba(0, 0, 0, 0.16)
+      );
+    }
+  }
+
+}
+
+/*
+ * Initial width for resizable dialogs.
+ */
+@media (min-width: 576px) {
+  .e-modal .modal-dialog.e-modal--resizable {
+    width: var(--bs-modal-width, 500px);
+  }
+}
+
+/*
+ * Original mobile breakpoint and button arrangement.
+ */
+@media (max-width: 576px) {
+  .e-modal__btn-group {
+    flex-direction: column;
+    width: 100%;
+
+    & button:first-child {
+      order: 2;
+      margin: 0;
+    }
+
+    button:last-child {
+      order: 1;
+      margin: 0 0 12px 0;
+    }
+  }
+}
+
+/*
+ * Apply the page-scroll decision made by the modal coordinator.
+ */
+body.modal-open.e-modal--page-scroll {
+  // Bootstrap sets overflow: hidden inline on the body while a modal is open.
+  overflow-y: auto !important;
+}
+
+.modal.e-modal--fullscreen {
+  overflow-y: hidden;
+}
+
+@media (max-width: 575.98px) {
+  .modal.e-modal--fullscreen-sm-down {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .modal.e-modal--fullscreen-md-down {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .modal.e-modal--fullscreen-lg-down {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .modal.e-modal--fullscreen-xl-down {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 1399.98px) {
+  .modal.e-modal--fullscreen-xxl-down {
+    overflow-y: hidden;
+  }
+}
+
+/*
+ * Set bar variables here for all bars or on a modalClass for one bar.
+ * Dock-wide: --e-modal-dock-gap, --e-modal-dock-inset-inline,
+ * --e-modal-dock-inset-bottom.
+ * Per-bar: --e-modal-dock-bar-background, --e-modal-dock-bar-color,
+ * --e-modal-dock-bar-border, --e-modal-dock-bar-border-radius,
+ * --e-modal-dock-bar-shadow, --e-modal-dock-bar-max-width,
+ * --e-modal-dock-bar-title-max-width, --e-modal-dock-bar-padding,
+ * --e-modal-dock-bar-item-gap, --e-modal-dock-bar-action-padding,
+ * --e-modal-dock-bar-action-border-radius, --e-modal-dock-bar-action-color,
+ * --e-modal-dock-bar-action-background,
+ * --e-modal-dock-bar-action-hover-background, and
+ * --e-modal-dock-bar-action-active-background.
+ */
+.e-modal__minimized-dock {
+  position: fixed;
+  inset: auto
+    var(--e-modal-dock-inset-inline, 1rem)
+    var(--e-modal-dock-inset-bottom, calc(1rem + env(safe-area-inset-bottom, 0px)))
+    var(--e-modal-dock-inset-inline, 1rem);
+  z-index: 2000;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--e-modal-dock-gap, 0.25rem);
+  overflow: visible;
+  pointer-events: none;
+
+  > .e-modal--minimized {
+    pointer-events: auto;
+  }
+}
+
+body.e-modal--backdrop-active .e-modal__minimized-dock {
+  z-index: 1040;
+}
+
+.modal.e-modal.e-modal--minimized {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: max-content;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  overflow: visible;
+  pointer-events: auto;
+
+  > .modal-dialog {
+    display: block;
+    width: max-content;
+    height: auto;
+    max-width: var(--e-modal-dock-bar-max-width, min(36rem, calc(100vw - 2rem)));
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    overflow: visible;
+    resize: none;
+    transform: none;
+    pointer-events: auto;
+
+    > .modal-content {
+      width: max-content;
+      height: auto;
+      max-width: 100%;
+      min-width: 0;
+      background-color: var(
+        --e-modal-dock-bar-background,
+        var(--bs-modal-bg, #fff)
+      );
+      color: var(--e-modal-dock-bar-color, var(--bs-modal-color, inherit));
+      border: var(
+        --e-modal-dock-bar-border,
+        var(--bs-modal-border-width, 1px)
+          solid
+          var(--bs-modal-border-color, rgba(0, 0, 0, 0.2))
+      );
+      border-radius: var(--e-modal-dock-bar-border-radius, 0.5rem);
+      box-shadow: var(
+        --e-modal-dock-bar-shadow,
+        var(--bs-modal-box-shadow, 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075))
+      );
+
+      > :not(.modal-header) {
+        display: none;
+      }
+
+      > .modal-header {
+        display: flex;
+        align-items: center;
+        gap: var(--e-modal-dock-bar-item-gap, 0.5rem);
+        padding: var(--e-modal-dock-bar-padding, 0.5rem 0.75rem);
+        border: 0;
+        border-radius: var(--e-modal-dock-bar-border-radius, 0.5rem);
+        white-space: nowrap;
+        cursor: default;
+        touch-action: auto;
+        user-select: none;
+      }
+    }
+  }
+
+  .modal-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: var(--e-modal-dock-bar-title-max-width, min(40vw, 30rem));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .e-modal__maximize {
+    display: none;
+  }
+
+  .e-modal__minimize,
+  .e-modal__close,
+  .e-modal__minimized-close {
+    padding: var(--e-modal-dock-bar-action-padding, 8px);
+    border-radius: var(--e-modal-dock-bar-action-border-radius, 50%);
+    color: var(
+      --e-modal-dock-bar-action-color,
+      var(--e-grey-40, var(--bs-secondary-color, #6c757d))
+    );
+    background-color: var(--e-modal-dock-bar-action-background, inherit);
+
+    &:hover {
+      background-color: var(
+        --e-modal-dock-bar-action-hover-background,
+        var(--e-primary-light, var(--bs-tertiary-bg, #f8f9fa))
+      );
+    }
+
+    &:active {
+      background-color: var(
+        --e-modal-dock-bar-action-active-background,
+        var(--e-primary-light-20, var(--bs-secondary-bg, #e2e3e5))
+      );
+    }
+
+    position: static;
+    inset: auto;
+    flex: 0 0 auto;
+    align-self: center;
+    margin: 0;
+  }
+}

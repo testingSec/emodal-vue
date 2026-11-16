@@ -1,0 +1,48 @@
+{
+  "name": "emodal-vue",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Standalone Vue 3 modal component",
+  "license": "MIT",
+  "scripts": {
+    "build": "vite build && vue-tsc --project tsconfig.build.json",
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
+  },
+  "main": "./dist/emodal.cjs",
+  "module": "./dist/emodal.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/emodal.js",
+      "require": "./dist/emodal.cjs"
+    },
+    "./style.css": "./dist/emodal.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "peerDependencies": {
+    "@vueuse/core": "^15.0.0",
+    "bootstrap": "^5.3.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "5.2.11",
+    "@vitejs/plugin-vue": "6.0.11",
+    "@vueuse/core": "15.0.0",
+    "bootstrap": "5.3.9",
+    "jsdom": "31.0.1",
+    "sass": "1.108.2",
+    "typescript": "6.0.3",
+    "vite": "8.3.8",
+    "vitest": "5.1.0",
+    "vue": "3.5.45",
+    "vue-tsc": "3.3.14"
+  }
+}
